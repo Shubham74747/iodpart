@@ -1,66 +1,151 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-	<title>Shopping Cart UI</title>
-	<link rel="stylesheet" type="text/css" href="./style.css">
-	<link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,900" rel="stylesheet">
+    <title>Shopping Cart UI</title>
+    <link rel="stylesheet" type="text/css" href="./style.css">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700,900" rel="stylesheet">
 </head>
+
 <body>
-   <div class="CartContainer">
-   	   <div class="Header">
-   	   	<h3 class="Heading">Shopping Cart</h3>
-   	   	<h5 class="Action">Remove all</h5>
-   	   </div>
+    <div class="CartContainer">
+        <div id="main">
+            <div class="Header">
+                <h3 class="Heading">Shopping Cart</h3>
+                <h5 class="Action">Remove all</h5>
+            </div>
 
-   	   <div class="Cart-Items">
-   	   	  <div class="image-box">
-   	   	  	<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeFLeSySyU7pZ_0b3cwVUqix-Ba25sii05ihRJ21G4LQ&s" style={{ height="120px" }} />
-   	   	  </div>
-   	   	  <div class="about">
-   	   	  	<h3 class="title">BBC micro:bit</h3>
-   	   	  	<h3 class="subtitle">250ml</h3>
-   	   	  </div>
-   	   	  <div class="counter">
-   	   	  	<div class="btn">+</div>
-   	   	  	<div class="count">2</div>
-   	   	  	<div class="btn">-</div>
-   	   	  </div>
-   	   	  <div class="prices">
-   	   	  	<div class="amount">1500</div>
-   	   	  	<div class="save"><u>Save for later</u></div>
-   	   	  	<div class="remove"><u>Remove</u></div>
-   	   	  </div>
-   	   </div>
+            <div class="Cart-Items">
+                <div class="image-box">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTeFLeSySyU7pZ_0b3cwVUqix-Ba25sii05ihRJ21G4LQ&s"
+                        style={{ height="120px" }} />
+                </div>
+                <div class="about">
+                    <h3 class="title">BBC micro:bit</h3>
+                </div>
+                <div class="counter">
+                    <div class="btn" onclick="incrementItem('item1')">+</div>
+                    <div class="count" id="product1Count"></div>
+                    <div class="btn" onclick="decrementItem('item1')">-</div>
+                </div>
+                <div class="prices">
+                    <div class="amount">1500</div>
+                    <div class="save"><u>Save for later</u></div>
+                    <div class="remove"><u>Remove</u></div>
+                </div>
+            </div>
 
-   	   <div class="Cart-Items pad">
-   	   	  <div class="image-box">
-   	   	  	<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ6lpuX39rNmMEEG8OdYfd8p5iK208Y4z8a5wJlkif-Q&s" style={{ height="120px" }} />
-   	   	  </div>
-   	   	  <div class="about">
-   	   	  	<h6 class="title">Arduino Uno R3</h6>
-   	   	  	<h3 class="subtitle">250ml</h3>
-   	   	  </div>
-   	   	  <div class="counter">
-   	   	  	<div class="btn">+</div>
-   	   	  	<div class="count">1</div>
-   	   	  	<div class="btn">-</div>
-   	   	  </div>
-   	   	  <div class="prices">
-   	   	  	<div class="amount">600</div>
-   	   	  	<div class="save"><u>Save for later</u></div>
-   	   	  	<div class="remove"><u>Remove</u></div>
-   	   	  </div>
-   	   </div>
-   	 <hr> 
-   	 <div class="checkout">
-   	 <div class="total">
-   	 	<div>
-   	 		<div class="Subtotal">Sub-Total</div>
-   	 		<div class="items">2 items</div>
-   	 	</div>
-   	 	<div class="total-amount">2100</div>
-   	 </div>
-   	 <button class="button">Checkout</button></div>
-   </div>
+            <div class="Cart-Items pad">
+                <div class="image-box">
+                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQQ6lpuX39rNmMEEG8OdYfd8p5iK208Y4z8a5wJlkif-Q&s"
+                        style={{ height="120px" }} />
+                </div>
+                <div class="about">
+                    <h6 class="title">Arduino Uno R3</h6>
+                </div>
+                <div class="counter">
+                    <div class="btn" onclick="incrementItem('item2')">+</div>
+                    <div class="count" id="product2Count"></div>
+                    <div class="btn" onclick="decrementItem('item2')">-</div>
+                </div>
+                <div class="prices">
+                    <div class="amount">600</div>
+                    <div class="save"><u>Save for later</u></div>
+                    <div class="remove"><u>Remove</u></div>
+                </div>
+            </div>
+            <hr>
+            <div class="checkout">
+                <div class="total">
+                    <div>
+                        <div class="Subtotal">Sub-Total</div>
+                    </div>
+                    <div class="total-amount" id="subtotal"></div>
+                </div>
+
+                <button class="button" onclick="onCheckout()">Checkout</button>
+            </div>
+        </div>
+        <form id="address">
+            <p>Please select your Address:</p>
+            <input type="radio" value="Delhi" name="address">
+            <label for="age1"><b>Delhi</b>
+                <p>Shahdara Raja sweets</p>
+                <p1>pin code: 002211</p1>
+            </label><br><br>
+            <input type="radio" value="Pune" name="address">
+            <label for="age2"><b>Pune</b>
+                <p>Bavdhan R k Hostel</p>
+                <p>pin code: 411001</p>
+            </label><br>
+            <input type="radio" value="Bangalore" name="address">
+            <label for="age3"><b>Bangalore</b>
+                <p>bellandur Om Sai Hostel</p>
+                <p>pin code: 560103</p>
+            </label><br><br>
+            <input type="button" value="Proceed" class="button" onclick="onAddressSelection()" />
+        </form>
+        <form id="creditCard" class="credit-card">
+            <div class="form-header">
+                <h4 class="title">Credit card detail</h4>
+            </div>
+
+            <div class="form-body">
+                <!-- Card Number -->
+                <input type="text" class="card-number" placeholder="Card Number">
+
+                <!-- Date Field -->
+                <div class="date-field">
+                    <div class="month">
+                        <select name="Month">
+                            <option value="january">January</option>
+                            <option value="february">February</option>
+                            <option value="march">March</option>
+                            <option value="april">April</option>
+                            <option value="may">May</option>
+                            <option value="june">June</option>
+                            <option value="july">July</option>
+                            <option value="august">August</option>
+                            <option value="september">September</option>
+                            <option value="october">October</option>
+                            <option value="november">November</option>
+                            <option value="december">December</option>
+                        </select>
+                    </div>
+                    <div class="year">
+                        <select name="Year">
+                            <option value="2016">2016</option>
+                            <option value="2017">2017</option>
+                            <option value="2018">2018</option>
+                            <option value="2019">2019</option>
+                            <option value="2020">2020</option>
+                            <option value="2021">2021</option>
+                            <option value="2022">2022</option>
+                            <option value="2023">2023</option>
+                            <option value="2024">2024</option>
+                        </select>
+                    </div>
+                </div>
+
+                <!-- Card Verification Field -->
+                <div class="card-verification">
+                    <div class="cvv-input">
+                        <input type="text" placeholder="CVV">
+                    </div>
+                    <div class="cvv-details">
+                        <p>3 or 4 digits usually found <br> on the signature strip</p>
+                    </div>
+                </div>
+
+                <!-- Buttons -->
+                <input type="button" class="proceed-btn" onclick="onPayment()" value="Submit" />
+            </div>
+        </form>
+        <div id="thanks">
+            Thank you for your order.
+        </div>
+    </div>
 </body>
+<script src="script.js"></script>
+
 </html>
